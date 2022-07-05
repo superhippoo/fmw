@@ -1,4 +1,4 @@
-package com.fmw.controller;
+package com.fmw.ctl;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

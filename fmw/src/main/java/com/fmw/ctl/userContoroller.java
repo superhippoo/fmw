@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fmw.dto.message;
 import com.fmw.dto.userVO;
+import com.fmw.entity.userEntity;
 import com.fmw.enums.statusEnum;
 import com.fmw.svc.userSvc;
 
@@ -37,5 +38,22 @@ public class userContoroller {
 		return new ResponseEntity<message>(ms,HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "userlistjpa", method = RequestMethod.GET)
+	public ResponseEntity<message> selectUserListJPA() {
+		message ms = new message();
+		List<userEntity> result = new ArrayList<userEntity>();
+		result = usersvc.selectUserListJPA();
+		ms.setData(result);
+		ms.setStatus(statusEnum.OK.getStatusCode());
+		ms.setTotalcount(String.valueOf(result.size()));
+		ms.setReturnmessage("Success");
+		if (result.isEmpty()) {
+			ms.setReturnmessage("Data Not Found");
+		}
+		return new ResponseEntity<message>(ms,HttpStatus.OK);
+
+	}
+
 
 }

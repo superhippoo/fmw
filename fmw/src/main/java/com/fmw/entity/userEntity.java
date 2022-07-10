@@ -92,5 +92,14 @@ public class userEntity {
 	public void setMdfy_dt(Timestamp mdfy_dt) {
 		this.mdfy_dt = mdfy_dt;
 	}
+	
+
+	@Override
+	public String toString() {
+		return "userEntity [uid=" + uid + ", nickname=" + nickname + ", snsloginci=" + snsloginci + ", report_num="
+				+ report_num + ", act_yn=" + act_yn + ", user_type=" + user_type + ", reg_dt=" + reg_dt + ", mdfy_dt="
+				+ mdfy_dt + "]";
+	}
+
 
 }

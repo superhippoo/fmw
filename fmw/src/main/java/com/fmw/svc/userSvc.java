@@ -16,7 +16,11 @@ public interface userSvc {
 
 	public Optional<userEntity> selectUserByUid(String uid);
 	
-	public List<userEntity> selectUserBySnsloginci(String snsloginci);
+	public Optional<userEntity> selectUserBySnsloginci(String snsloginci);
 
-
+	public userEntity insertUser(userEntity user);
+	
+	public userEntity updateUser(userEntity user);
+	
+	public boolean deleteUser(String uid);
 }

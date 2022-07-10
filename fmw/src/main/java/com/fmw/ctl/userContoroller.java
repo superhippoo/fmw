@@ -17,6 +17,7 @@ import com.fmw.dto.message;
 import com.fmw.dto.userVO;
 import com.fmw.entity.userEntity;
 import com.fmw.enums.statusEnum;
+import com.fmw.exception.BadRequestException;
 import com.fmw.svc.userSvc;
 
 @RestController
@@ -59,7 +60,11 @@ public class userContoroller {
 	}
 
 	@RequestMapping(value = "userbynickname", method = RequestMethod.GET)
-	public ResponseEntity<message> selectUserByNickname(@RequestParam("nickname") String nickname) {
+	public ResponseEntity<message> selectUserByNickname(@RequestParam("nickname") String nickname) {		
+    	if (nickname == null || nickname == "") {
+    		throw new BadRequestException("Nickname Required");
+		} 
+		
 		message ms = new message();
 		List<userEntity> result = new ArrayList<userEntity>();
 		result = usersvc.selectUserByNickname(nickname);
@@ -76,6 +81,10 @@ public class userContoroller {
 
 	@RequestMapping(value = "user", method = RequestMethod.GET)
 	public ResponseEntity<message> selectUserByUid(@RequestParam("uid") String uid) {
+    	if (uid == null || uid == "") {
+    		throw new BadRequestException("Uid Required");
+		} 
+    	
 		message ms = new message();
 		Optional<userEntity> result = usersvc.selectUserByUid(uid);
 		ms.setData(result);
@@ -90,6 +99,10 @@ public class userContoroller {
 
 	@RequestMapping(value = "userbysnsloginci", method = RequestMethod.GET)
 	public ResponseEntity<message> selectUserBySnsloginci(@RequestParam("snsloginci") String snsloginci) {
+    	if (snsloginci == null || snsloginci == "") {
+    		throw new BadRequestException("Snsloginci Required");
+		} 
+    	
 		message ms = new message();
 		Optional<userEntity> result = usersvc.selectUserBySnsloginci(snsloginci);
 		ms.setData(result);
@@ -104,6 +117,9 @@ public class userContoroller {
 
 	@RequestMapping(value = "user", method = RequestMethod.POST)
 	public ResponseEntity<message> insertUser(@RequestBody userEntity user) {
+		
+		//필수항목 정리 후 체크 로직 적용 예정
+		
 		message ms = new message();
 		userEntity result = usersvc.insertUser(user);
 
@@ -121,6 +137,10 @@ public class userContoroller {
 
 	@RequestMapping(value = "user", method = RequestMethod.PATCH)
 	public ResponseEntity<message> updateUser(@RequestBody userEntity user) {
+    	if (user.getUid() == null || user.getUid() == "") {
+    		throw new BadRequestException("Uid Required");
+		} 
+		
 		message ms = new message();
 		userEntity result = usersvc.updateUser(user);
 
@@ -138,6 +158,10 @@ public class userContoroller {
 
 	@RequestMapping(value = "user", method = RequestMethod.DELETE)
 	public ResponseEntity<message> deleteUser(@RequestParam("uid") String uid) {
+    	if (uid == null || uid == "") {
+    		throw new BadRequestException("Uid Required");
+		} 
+		
 		message ms = new message();
 		boolean isdelete = usersvc.deleteUser(uid);
 		

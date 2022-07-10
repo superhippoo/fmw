@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fmw.dto.message;
@@ -54,6 +55,39 @@ public class userContoroller {
 		return new ResponseEntity<message>(ms,HttpStatus.OK);
 
 	}
+	
+	@RequestMapping(value = "userbynickname", method = RequestMethod.GET)
+	public ResponseEntity<message> selectUserByNickname(@RequestParam("nickname") String nickname) {
+		message ms = new message();
+		List<userEntity> result = new ArrayList<userEntity>();
+		result = usersvc.selectUserByNickname(nickname);
+		ms.setData(result);
+		ms.setStatus(statusEnum.OK.getStatusCode());
+		ms.setTotalcount(String.valueOf(result.size()));
+		ms.setReturnmessage("Success");
+		if (result.isEmpty()) {
+			ms.setReturnmessage("Data Not Found");
+		}
+		return new ResponseEntity<message>(ms,HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value = "user", method = RequestMethod.GET)
+	public ResponseEntity<message> selectUserByUid(@RequestParam("uid") String uid) {
+		message ms = new message();
+		List<userEntity> result = new ArrayList<userEntity>();
+		result = usersvc.selectUserByNickname(uid);
+		ms.setData(result);
+		ms.setStatus(statusEnum.OK.getStatusCode());
+		ms.setTotalcount(String.valueOf(result.size()));
+		ms.setReturnmessage("Success");
+		if (result.isEmpty()) {
+			ms.setReturnmessage("Data Not Found");
+		}
+		return new ResponseEntity<message>(ms,HttpStatus.OK);
+
+	}
+	
 
 
 }

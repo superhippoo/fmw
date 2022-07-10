@@ -1,6 +1,7 @@
 package com.fmw.svc;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class userSvcImpl implements userSvc {
 
 	@Autowired
 	private userDao userdao;
-	
+
 	@Autowired
 	private userRepository userrepository;
 
@@ -27,6 +28,16 @@ public class userSvcImpl implements userSvc {
 	@Override
 	public List<userEntity> selectUserListJPA() {
 		return userrepository.findAll();
+	}
+
+	@Override
+	public List<userEntity> selectUserByNickname(String nickname) {
+		return userrepository.findByNickname(nickname);	
+	}
+
+	@Override
+	public Optional<userEntity> selectUserByIid(String uid) {
+		return userrepository.findById(uid);
 	}
 
 }

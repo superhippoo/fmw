@@ -10,14 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sw_user")
 public class userEntity {
-	
+
 	@Id
 	@Column
 	private String uid;
 	@Column
 	private String nickname;
-	@Column
-	private String sns_login_ci;
+	@Column(name = "sns_login_ci")
+	private String snsloginci;
 	@Column
 	private int report_num;
 	@Column
@@ -45,12 +45,12 @@ public class userEntity {
 		this.nickname = nickname;
 	}
 
-	public String getSns_login_ci() {
-		return sns_login_ci;
+	public String getSnsloginci() {
+		return snsloginci;
 	}
 
-	public void setSns_login_ci(String sns_login_ci) {
-		this.sns_login_ci = sns_login_ci;
+	public void setSnsloginci(String snsloginci) {
+		this.snsloginci = snsloginci;
 	}
 
 	public int getReport_num() {

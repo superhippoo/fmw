@@ -32,12 +32,18 @@ public class userSvcImpl implements userSvc {
 
 	@Override
 	public List<userEntity> selectUserByNickname(String nickname) {
-		return userrepository.findByNickname(nickname);	
+		return userrepository.findByNickname(nickname);
 	}
 
 	@Override
-	public Optional<userEntity> selectUserByIid(String uid) {
+	public Optional<userEntity> selectUserByUid(String uid) {
 		return userrepository.findById(uid);
+
+	}
+
+	@Override
+	public List<userEntity> selectUserBySnsloginci(String snsloginci) {
+		return userrepository.findBySnsloginci(snsloginci);
 	}
 
 }

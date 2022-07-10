@@ -14,6 +14,9 @@ public interface userSvc {
 
 	public List<userEntity> selectUserByNickname(String nickname);
 
-	public Optional<userEntity> selectUserByIid(String uid);
+	public Optional<userEntity> selectUserByUid(String uid);
+	
+	public List<userEntity> selectUserBySnsloginci(String snsloginci);
+
 
 }

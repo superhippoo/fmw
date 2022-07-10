@@ -9,5 +9,9 @@ import com.fmw.entity.userEntity;
 public interface userRepository extends JpaRepository<userEntity, String> {
 
 	public List<userEntity> findByNickname(String nickname);
+	
+	public List<userEntity> findBySnsloginci(String snsloginci);
+
+	
 
 }

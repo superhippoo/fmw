@@ -88,6 +88,21 @@ public class userContoroller {
 
 	}
 	
+	@RequestMapping(value = "userbysnsloginci", method = RequestMethod.GET)
+	public ResponseEntity<message> selectUserBySnsloginci(@RequestParam("snsloginci") String snsloginci) {
+		message ms = new message();
+		List<userEntity> result = new ArrayList<userEntity>();
+		result = usersvc.selectUserBySnsloginci(snsloginci);
+		ms.setData(result);
+		ms.setStatus(statusEnum.OK.getStatusCode());
+		ms.setTotalcount(String.valueOf(result.size()));
+		ms.setReturnmessage("Success");
+		if (result.isEmpty()) {
+			ms.setReturnmessage("Data Not Found");
+		}
+		return new ResponseEntity<message>(ms,HttpStatus.OK);
+
+	}
 
 
 }

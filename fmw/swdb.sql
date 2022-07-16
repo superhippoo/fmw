@@ -1,7 +1,7 @@
 CREATE DATABASE SWDB default CHARACTER SET UTF8; -- DB 생성
 use SWDB; -- SWDB 사용
 
-
+SET foreign_key_checks = 1; -- 외래키 체크 해제 : 0
 
 drop table sw_user;
 drop table sw_pool;
@@ -33,7 +33,7 @@ insert into sw_user values('testdata22','1nickname','1testdata',0,'Y','A',CURREN
 
 select * from sw_user;
 
-CREATE TABLE sw_pool (-- 사용자 테이블
+CREATE TABLE sw_pool (-- 수영장 테이블
     pool_id VARCHAR(20) PRIMARY KEY,
     pool_nm VARCHAR(50),
     pool_location VARCHAR(50),
@@ -48,7 +48,7 @@ CREATE TABLE sw_pool (-- 사용자 테이블
     pool_detail LONGTEXT,
     pool_lane_len INT(11),
     pool_lane_num INT(11),
-    pool_lane_depth INT(11),
+    pool_lane_depth double,
     pool_sea_yn VARCHAR(2),
     pool_child_yn VARCHAR(2),
     pool_locker_yn VARCHAR(2),
@@ -71,9 +71,12 @@ show index from sw_pool;
 
 insert into sw_pool values('testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata',25,6,1,'Y','Y','Y','testdata','Y','testdata','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 insert into sw_pool values('1testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata',25,6,1,'Y','Y','Y','testdata','Y','testdata','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_pool values('2testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata',25,6,1.5,'Y','Y','Y','testdata','Y','testdata','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 select * from sw_pool;
 
+
+commit;
 
 CREATE TABLE sw_pool_ttable (-- 수영장 운영시간 테이블
     ptt_id VARCHAR(20),
@@ -98,7 +101,7 @@ insert into sw_pool_ttable values('1testdata','1testdata',1,'testdata','testdata
 
 
 
-select * from sw_pool_ttable;
+select * from sw_pool;
 
 
 

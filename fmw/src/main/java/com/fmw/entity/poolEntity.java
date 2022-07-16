@@ -14,8 +14,8 @@ public class poolEntity {
 	@Id
 	@Column
 	private String pool_id;
-	@Column
-	private String pool_nm;
+	@Column(name = "pool_nm")
+	private String poolnm;
 	@Column
 	private String pool_location;
 	@Column
@@ -41,7 +41,7 @@ public class poolEntity {
 	@Column
 	private int pool_lane_num;
 	@Column
-	private int pool_lane_depth;
+	private double pool_lane_depth;
 	@Column
 	private String pool_sea_yn;
 	@Column
@@ -79,12 +79,12 @@ public class poolEntity {
 		this.pool_id = pool_id;
 	}
 
-	public String getPool_nm() {
-		return pool_nm;
+	public String getPoolnm() {
+		return poolnm;
 	}
 
-	public void setPool_nm(String pool_nm) {
-		this.pool_nm = pool_nm;
+	public void setPoolnm(String poolnm) {
+		this.poolnm = poolnm;
 	}
 
 	public String getPool_location() {
@@ -183,7 +183,7 @@ public class poolEntity {
 		this.pool_lane_num = pool_lane_num;
 	}
 
-	public int getPool_lane_depth() {
+	public double getPool_lane_depth() {
 		return pool_lane_depth;
 	}
 

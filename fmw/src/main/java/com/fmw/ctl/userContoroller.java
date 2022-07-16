@@ -87,7 +87,7 @@ public class userContoroller {
     	
 		message ms = new message();
 		Optional<userEntity> result = usersvc.selectUserByUid(uid);
-		ms.setData(result);
+		ms.setData(result.get());
 		ms.setStatus(statusEnum.OK.getStatusCode());
 		ms.setReturnmessage("Success");
 		if (!result.isPresent()) {// 값이 없으면
@@ -105,7 +105,7 @@ public class userContoroller {
     	
 		message ms = new message();
 		Optional<userEntity> result = usersvc.selectUserBySnsloginci(snsloginci);
-		ms.setData(result);
+		ms.setData(result.get());
 		ms.setStatus(statusEnum.OK.getStatusCode());
 		ms.setReturnmessage("Success");
 		if (result.isPresent()) {

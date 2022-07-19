@@ -12,71 +12,99 @@ import javax.persistence.Table;
 public class poolEntity {
 
 	@Id
-	@Column
-	private String pool_id;
+	@Column(name = "pool_id")
+	private String poolid;
+
 	@Column(name = "pool_nm")
 	private String poolnm;
-	@Column
-	private String pool_location;
-	@Column
-	private String pool_address_city;
-	@Column
-	private String pool_address_gu;
-	@Column
-	private String pool_address_detail;
-	@Column
-	private String pool_phone;
-	@Column
-	private String pool_website;
-	@Column
-	private String pool_instargram;
-	@Column
-	private String pool_parking_yn;
-	@Column
-	private String pool_image;
-	@Column
-	private String pool_detail;
-	@Column
-	private int pool_lane_len;
-	@Column
-	private int pool_lane_num;
-	@Column
-	private double pool_lane_depth;
-	@Column
-	private String pool_sea_yn;
-	@Column
-	private String pool_child_yn;
-	@Column
-	private String pool_locker_yn;
-	@Column
-	private String pool_locker_price;
-	@Column
-	private String pool_tower_yn;
-	@Column
-	private String pool_tower_price;
-	@Column
-	private String pool_shuttle_yn;
-	@Column
-	private String pool_shop_yn;
-	@Column
-	private String pool_etc_yn;
-	@Column
-	private String pool_break_yn;
-	@Column
-	private int pool_thumb_up;
-	@Column
-	private int pool_thumb_down;
-	@Column
-	private Timestamp reg_dt;
-	@Column
-	private Timestamp mdfy_dt;
 
-	public String getPool_id() {
-		return pool_id;
+	@Column(name = "pool_location")
+	private String poollocation;
+
+	@Column(name = "pool_address_city")
+	private String pooladdresscity;
+
+	@Column(name = "pool_address_gu")
+	private String pooladdressgu;
+
+	@Column(name = "pool_address_detail")
+	private String pooladdressdetail;
+
+	@Column(name = "pool_phone")
+	private String poolphone;
+
+	@Column(name = "pool_website")
+	private String poolwebsite;
+
+	@Column(name = "pool_instargram")
+	private String poolinstargram;
+
+	@Column(name = "pool_parking_yn")
+	private String poolparkingyn;
+
+	@Column(name = "pool_image")
+	private String poolimage;
+
+	@Column(name = "pool_detail")
+	private String pooldetail;
+
+	@Column(name = "pool_lane_len")
+	private int poollanelen;
+
+	@Column(name = "pool_lane_num")
+	private int poollanenum;
+
+	@Column(name = "pool_lane_depth")
+	private double poollanedepth;
+
+	@Column(name = "pool_sea_yn")
+	private String poolseayn;
+
+	@Column(name = "pool_child_yn")
+	private String poolchildyn;
+
+	@Column(name = "pool_locker_yn")
+	private String poollockeryn;
+
+	@Column(name = "pool_locker_price")
+	private String poollockerprice;
+
+	@Column(name = "pool_tower_yn")
+	private String pooltoweryn;
+
+	@Column(name = "pool_tower_price")
+	private String pooltowerprice;
+
+	@Column(name = "pool_shuttle_yn")
+	private String poolshuttleyn;
+
+	@Column(name = "pool_shop_yn")
+	private String poolshopyn;
+
+	@Column(name = "pool_etc_yn")
+	private String pooletcyn;
+
+	@Column(name = "pool_break_yn")
+	private String poolbreakyn;
+
+	@Column(name = "pool_thumb_up")
+	private int poolthumbup;
+
+	@Column(name = "pool_thumb_down")
+	private int poolthumbdown;
+
+	@Column(name = "reg_dt")
+	private Timestamp regdt;
+
+	@Column(name = "mdfy_dt")
+	private Timestamp mdfydt;
+
+	public String getPoolid() {
+		return poolid;
 	}
 
-	public void setPool_id(String pool_id) {
-		this.pool_id = pool_id;
+	public void setPoolid(String poolid) {
+		this.poolid = poolid;
 	}
 
 	public String getPoolnm() {
@@ -87,220 +115,220 @@ public class poolEntity {
 		this.poolnm = poolnm;
 	}
 
-	public String getPool_location() {
-		return pool_location;
+	public String getPoollocation() {
+		return poollocation;
 	}
 
-	public void setPool_location(String pool_location) {
-		this.pool_location = pool_location;
+	public void setPoollocation(String poollocation) {
+		this.poollocation = poollocation;
 	}
 
-	public String getPool_address_city() {
-		return pool_address_city;
+	public String getPooladdresscity() {
+		return pooladdresscity;
 	}
 
-	public void setPool_address_city(String pool_address_city) {
-		this.pool_address_city = pool_address_city;
+	public void setPooladdresscity(String pooladdresscity) {
+		this.pooladdresscity = pooladdresscity;
 	}
 
-	public String getPool_address_gu() {
-		return pool_address_gu;
+	public String getPooladdressgu() {
+		return pooladdressgu;
 	}
 
-	public void setPool_address_gu(String pool_address_gu) {
-		this.pool_address_gu = pool_address_gu;
+	public void setPooladdressgu(String pooladdressgu) {
+		this.pooladdressgu = pooladdressgu;
 	}
 
-	public String getPool_address_detail() {
-		return pool_address_detail;
+	public String getPooladdressdetail() {
+		return pooladdressdetail;
 	}
 
-	public void setPool_address_detail(String pool_address_detail) {
-		this.pool_address_detail = pool_address_detail;
+	public void setPooladdressdetail(String pooladdressdetail) {
+		this.pooladdressdetail = pooladdressdetail;
 	}
 
-	public String getPool_phone() {
-		return pool_phone;
+	public String getPoolphone() {
+		return poolphone;
 	}
 
-	public void setPool_phone(String pool_phone) {
-		this.pool_phone = pool_phone;
+	public void setPoolphone(String poolphone) {
+		this.poolphone = poolphone;
 	}
 
-	public String getPool_website() {
-		return pool_website;
+	public String getPoolwebsite() {
+		return poolwebsite;
 	}
 
-	public void setPool_website(String pool_website) {
-		this.pool_website = pool_website;
+	public void setPoolwebsite(String poolwebsite) {
+		this.poolwebsite = poolwebsite;
 	}
 
-	public String getPool_instargram() {
-		return pool_instargram;
+	public String getPoolinstargram() {
+		return poolinstargram;
 	}
 
-	public void setPool_instargram(String pool_instargram) {
-		this.pool_instargram = pool_instargram;
+	public void setPoolinstargram(String poolinstargram) {
+		this.poolinstargram = poolinstargram;
 	}
 
-	public String getPool_parking_yn() {
-		return pool_parking_yn;
+	public String getPoolparkingyn() {
+		return poolparkingyn;
 	}
 
-	public void setPool_parking_yn(String pool_parking_yn) {
-		this.pool_parking_yn = pool_parking_yn;
+	public void setPoolparkingyn(String poolparkingyn) {
+		this.poolparkingyn = poolparkingyn;
 	}
 
-	public String getPool_image() {
-		return pool_image;
+	public String getPoolimage() {
+		return poolimage;
 	}
 
-	public void setPool_image(String pool_image) {
-		this.pool_image = pool_image;
+	public void setPoolimage(String poolimage) {
+		this.poolimage = poolimage;
 	}
 
-	public String getPool_detail() {
-		return pool_detail;
+	public String getPooldetail() {
+		return pooldetail;
 	}
 
-	public void setPool_detail(String pool_detail) {
-		this.pool_detail = pool_detail;
+	public void setPooldetail(String pooldetail) {
+		this.pooldetail = pooldetail;
 	}
 
-	public int getPool_lane_len() {
-		return pool_lane_len;
+	public int getPoollanelen() {
+		return poollanelen;
 	}
 
-	public void setPool_lane_len(int pool_lane_len) {
-		this.pool_lane_len = pool_lane_len;
+	public void setPoollanelen(int poollanelen) {
+		this.poollanelen = poollanelen;
 	}
 
-	public int getPool_lane_num() {
-		return pool_lane_num;
+	public int getPoollanenum() {
+		return poollanenum;
 	}
 
-	public void setPool_lane_num(int pool_lane_num) {
-		this.pool_lane_num = pool_lane_num;
+	public void setPoollanenum(int poollanenum) {
+		this.poollanenum = poollanenum;
 	}
 
-	public double getPool_lane_depth() {
-		return pool_lane_depth;
+	public double getPoollanedepth() {
+		return poollanedepth;
 	}
 
-	public void setPool_lane_depth(int pool_lane_depth) {
-		this.pool_lane_depth = pool_lane_depth;
+	public void setPoollanedepth(double poollanedepth) {
+		this.poollanedepth = poollanedepth;
 	}
 
-	public String getPool_sea_yn() {
-		return pool_sea_yn;
+	public String getPoolseayn() {
+		return poolseayn;
 	}
 
-	public void setPool_sea_yn(String pool_sea_yn) {
-		this.pool_sea_yn = pool_sea_yn;
+	public void setPoolseayn(String poolseayn) {
+		this.poolseayn = poolseayn;
 	}
 
-	public String getPool_child_yn() {
-		return pool_child_yn;
+	public String getPoolchildyn() {
+		return poolchildyn;
 	}
 
-	public void setPool_child_yn(String pool_child_yn) {
-		this.pool_child_yn = pool_child_yn;
+	public void setPoolchildyn(String poolchildyn) {
+		this.poolchildyn = poolchildyn;
 	}
 
-	public String getPool_locker_yn() {
-		return pool_locker_yn;
+	public String getPoollockeryn() {
+		return poollockeryn;
 	}
 
-	public void setPool_locker_yn(String pool_locker_yn) {
-		this.pool_locker_yn = pool_locker_yn;
+	public void setPoollockeryn(String poollockeryn) {
+		this.poollockeryn = poollockeryn;
 	}
 
-	public String getPool_locker_price() {
-		return pool_locker_price;
+	public String getPoollockerprice() {
+		return poollockerprice;
 	}
 
-	public void setPool_locker_price(String pool_locker_price) {
-		this.pool_locker_price = pool_locker_price;
+	public void setPoollockerprice(String poollockerprice) {
+		this.poollockerprice = poollockerprice;
 	}
 
-	public String getPool_tower_yn() {
-		return pool_tower_yn;
+	public String getPooltoweryn() {
+		return pooltoweryn;
 	}
 
-	public void setPool_tower_yn(String pool_tower_yn) {
-		this.pool_tower_yn = pool_tower_yn;
+	public void setPooltoweryn(String pooltoweryn) {
+		this.pooltoweryn = pooltoweryn;
 	}
 
-	public String getPool_tower_price() {
-		return pool_tower_price;
+	public String getPooltowerprice() {
+		return pooltowerprice;
 	}
 
-	public void setPool_tower_price(String pool_tower_price) {
-		this.pool_tower_price = pool_tower_price;
+	public void setPooltowerprice(String pooltowerprice) {
+		this.pooltowerprice = pooltowerprice;
 	}
 
-	public String getPool_shuttle_yn() {
-		return pool_shuttle_yn;
+	public String getPoolshuttleyn() {
+		return poolshuttleyn;
 	}
 
-	public void setPool_shuttle_yn(String pool_shuttle_yn) {
-		this.pool_shuttle_yn = pool_shuttle_yn;
+	public void setPoolshuttleyn(String poolshuttleyn) {
+		this.poolshuttleyn = poolshuttleyn;
 	}
 
-	public String getPool_shop_yn() {
-		return pool_shop_yn;
+	public String getPoolshopyn() {
+		return poolshopyn;
 	}
 
-	public void setPool_shop_yn(String pool_shop_yn) {
-		this.pool_shop_yn = pool_shop_yn;
+	public void setPoolshopyn(String poolshopyn) {
+		this.poolshopyn = poolshopyn;
 	}
 
-	public String getPool_etc_yn() {
-		return pool_etc_yn;
+	public String getPooletcyn() {
+		return pooletcyn;
 	}
 
-	public void setPool_etc_yn(String pool_etc_yn) {
-		this.pool_etc_yn = pool_etc_yn;
+	public void setPooletcyn(String pooletcyn) {
+		this.pooletcyn = pooletcyn;
 	}
 
-	public String getPool_break_yn() {
-		return pool_break_yn;
+	public String getPoolbreakyn() {
+		return poolbreakyn;
 	}
 
-	public void setPool_break_yn(String pool_break_yn) {
-		this.pool_break_yn = pool_break_yn;
+	public void setPoolbreakyn(String poolbreakyn) {
+		this.poolbreakyn = poolbreakyn;
 	}
 
-	public int getPool_thumb_up() {
-		return pool_thumb_up;
+	public int getPoolthumbup() {
+		return poolthumbup;
 	}
 
-	public void setPool_thumb_up(int pool_thumb_up) {
-		this.pool_thumb_up = pool_thumb_up;
+	public void setPoolthumbup(int poolthumbup) {
+		this.poolthumbup = poolthumbup;
 	}
 
-	public int getPool_thumb_down() {
-		return pool_thumb_down;
+	public int getPoolthumbdown() {
+		return poolthumbdown;
 	}
 
-	public void setPool_thumb_down(int pool_thumb_down) {
-		this.pool_thumb_down = pool_thumb_down;
+	public void setPoolthumbdown(int poolthumbdown) {
+		this.poolthumbdown = poolthumbdown;
 	}
 
-	public Timestamp getReg_dt() {
-		return reg_dt;
+	public Timestamp getRegdt() {
+		return regdt;
 	}
 
-	public void setReg_dt(Timestamp reg_dt) {
-		this.reg_dt = reg_dt;
+	public void setRegdt(Timestamp regdt) {
+		this.regdt = regdt;
 	}
 
-	public Timestamp getMdfy_dt() {
-		return mdfy_dt;
+	public Timestamp getMdfydt() {
+		return mdfydt;
 	}
 
-	public void setMdfy_dt(Timestamp mdfy_dt) {
-		this.mdfy_dt = mdfy_dt;
+	public void setMdfydt(Timestamp mdfydt) {
+		this.mdfydt = mdfydt;
 	}
 
 }

@@ -57,12 +57,12 @@ public class userSvcImpl implements userSvc {
 		}
 
 		user.setUid(uniqueIdUtil.generateUid("U"));
-		user.setAct_yn("Y");
-		user.setUser_type("U");
+		user.setActyn("Y");
+		user.setUsertype("U");
 		Timestamp time = new Timestamp(System.currentTimeMillis());
-		user.setReg_dt(time);
-		user.setMdfy_dt(time);
-		user.setReport_num(0);
+		user.setRegdt(time);
+		user.setMdfydt(time);
+		user.setReportnum(0);
 
 		return userrepository.saveAndFlush(user);
 	}
@@ -73,7 +73,7 @@ public class userSvcImpl implements userSvc {
 
 		if (tempuser.isPresent()) {
 			Timestamp time = new Timestamp(System.currentTimeMillis());
-			user.setMdfy_dt(time);
+			user.setMdfydt(time);
 			return userrepository.saveAndFlush(user);
 		} else {
 			return null;

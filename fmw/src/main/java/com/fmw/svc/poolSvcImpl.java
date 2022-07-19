@@ -23,8 +23,8 @@ public class poolSvcImpl implements poolSvc {
 	}
 
 	@Override
-	public Optional<poolEntity> selectPoolByPoolId(String pool_id) {
-		return poolrepository.findById(pool_id);
+	public Optional<poolEntity> selectPoolByPoolId(String poolid) {
+		return poolrepository.findById(poolid);
 	}
 
 	@Override
@@ -40,21 +40,21 @@ public class poolSvcImpl implements poolSvc {
 			return null;
 		}
 
-		pool.setPool_id(uniqueIdUtil.generateUid("P"));
+		pool.setPoolid(uniqueIdUtil.generateUid("P"));
 		Timestamp time = new Timestamp(System.currentTimeMillis());
-		pool.setReg_dt(time);
-		pool.setMdfy_dt(time);
+		pool.setRegdt(time);
+		pool.setMdfydt(time);
 
 		return poolrepository.saveAndFlush(pool);
 	}
 
 	@Override
 	public poolEntity updatePool(poolEntity pool) {
-		Optional<poolEntity> temppool = poolrepository.findById(pool.getPool_id());
+		Optional<poolEntity> temppool = poolrepository.findById(pool.getPoolid());
 
 		if (temppool.isPresent()) {
 			Timestamp time = new Timestamp(System.currentTimeMillis());
-			pool.setMdfy_dt(time);
+			pool.setMdfydt(time);
 			return poolrepository.saveAndFlush(pool);
 		} else {
 			return null;

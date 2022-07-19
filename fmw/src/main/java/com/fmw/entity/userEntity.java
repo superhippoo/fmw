@@ -12,22 +12,29 @@ import javax.persistence.Table;
 public class userEntity {
 
 	@Id
-	@Column
+	@Column(name = "uid")
 	private String uid;
-	@Column
+
+	@Column(name = "nickname")
 	private String nickname;
+
 	@Column(name = "sns_login_ci")
 	private String snsloginci;
-	@Column
-	private int report_num;
-	@Column
-	private String act_yn;
-	@Column
-	private String user_type;
-	@Column
-	private Timestamp reg_dt;
-	@Column
-	private Timestamp mdfy_dt;
+
+	@Column(name = "report_num")
+	private int reportnum;
+
+	@Column(name = "act_yn")
+	private String actyn;
+
+	@Column(name = "user_type")
+	private String usertype;
+
+	@Column(name = "reg_dt")
+	private Timestamp regdt;
+
+	@Column(name = "mdfy_dt")
+	private Timestamp mdfydt;
 
 	public String getUid() {
 		return uid;
@@ -53,53 +60,44 @@ public class userEntity {
 		this.snsloginci = snsloginci;
 	}
 
-	public int getReport_num() {
-		return report_num;
+	public int getReportnum() {
+		return reportnum;
 	}
 
-	public void setReport_num(int report_num) {
-		this.report_num = report_num;
+	public void setReportnum(int reportnum) {
+		this.reportnum = reportnum;
 	}
 
-	public String getAct_yn() {
-		return act_yn;
+	public String getActyn() {
+		return actyn;
 	}
 
-	public void setAct_yn(String act_yn) {
-		this.act_yn = act_yn;
+	public void setActyn(String actyn) {
+		this.actyn = actyn;
 	}
 
-	public String getUser_type() {
-		return user_type;
+	public String getUsertype() {
+		return usertype;
 	}
 
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
 	}
 
-	public Timestamp getReg_dt() {
-		return reg_dt;
+	public Timestamp getRegdt() {
+		return regdt;
 	}
 
-	public void setReg_dt(Timestamp reg_dt) {
-		this.reg_dt = reg_dt;
+	public void setRegdt(Timestamp regdt) {
+		this.regdt = regdt;
 	}
 
-	public Timestamp getMdfy_dt() {
-		return mdfy_dt;
+	public Timestamp getMdfydt() {
+		return mdfydt;
 	}
 
-	public void setMdfy_dt(Timestamp mdfy_dt) {
-		this.mdfy_dt = mdfy_dt;
+	public void setMdfydt(Timestamp mdfydt) {
+		this.mdfydt = mdfydt;
 	}
-	
-
-	@Override
-	public String toString() {
-		return "userEntity [uid=" + uid + ", nickname=" + nickname + ", snsloginci=" + snsloginci + ", report_num="
-				+ report_num + ", act_yn=" + act_yn + ", user_type=" + user_type + ", reg_dt=" + reg_dt + ", mdfy_dt="
-				+ mdfy_dt + "]";
-	}
-
 
 }

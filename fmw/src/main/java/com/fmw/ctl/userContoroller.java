@@ -87,11 +87,11 @@ public class userContoroller {
     	
 		message ms = new message();
 		Optional<userEntity> result = usersvc.selectUserByUid(uid);
-		ms.setData(result.get());
 		ms.setStatus(statusEnum.OK.getStatusCode());
-		ms.setReturnmessage("Success");
-		if (!result.isPresent()) {// 값이 없으면
-			ms.setReturnmessage("Data Not Found");
+		ms.setReturnmessage("Data Not Found");
+		if (result.isPresent()) {// 값이 없으면
+			ms.setReturnmessage("Success");
+			ms.setData(result.get());
 		}
 		return new ResponseEntity<message>(ms, HttpStatus.OK);
 

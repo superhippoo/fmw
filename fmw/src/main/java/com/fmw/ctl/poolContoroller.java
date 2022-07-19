@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fmw.dto.message;
 import com.fmw.entity.poolEntity;
-import com.fmw.entity.userEntity;
 import com.fmw.enums.statusEnum;
 import com.fmw.exception.BadRequestException;
 import com.fmw.svc.poolSvc;
@@ -28,7 +27,7 @@ public class poolContoroller {
 	private poolSvc poolsvc;
 
 	@RequestMapping(value = "poollist", method = RequestMethod.GET)
-	public ResponseEntity<message> selectUserListJPA() {
+	public ResponseEntity<message> selectPoolList() {
 		message ms = new message();
 		List<poolEntity> result = new ArrayList<poolEntity>();
 		result = poolsvc.selectPoolList();
@@ -44,18 +43,18 @@ public class poolContoroller {
 	}
 
 	@RequestMapping(value = "pool", method = RequestMethod.GET)
-	public ResponseEntity<message> selectPoolByPoolId(@RequestParam("pool_id") String pool_id) {
-		if (pool_id == null || pool_id == "") {
-			throw new BadRequestException("Pool_id Required");
+	public ResponseEntity<message> selectPoolByPoolId(@RequestParam("poolid") String poolid) {
+		if (poolid == null || poolid == "") {
+			throw new BadRequestException("Poolid Required");
 		}
 
 		message ms = new message();
-		Optional<poolEntity> result = poolsvc.selectPoolByPoolId(pool_id);
-		ms.setData(result.get());
+		Optional<poolEntity> result = poolsvc.selectPoolByPoolId(poolid);
 		ms.setStatus(statusEnum.OK.getStatusCode());
-		ms.setReturnmessage("Success");
-		if (!result.isPresent()) {// 값이 없으면
-			ms.setReturnmessage("Data Not Found");
+		ms.setReturnmessage("Data Not Found");
+		if (result.isPresent()) {
+			ms.setReturnmessage("Success");
+			ms.setData(result.get());
 		}
 		return new ResponseEntity<message>(ms, HttpStatus.OK);
 
@@ -100,13 +99,13 @@ public class poolContoroller {
 		return new ResponseEntity<message>(ms, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "pool", method = RequestMethod.PATCH)
 	public ResponseEntity<message> updatePool(@RequestBody poolEntity pool) {
-    	if (pool.getPool_id() == null || pool.getPool_id() == "") {
-    		throw new BadRequestException("Poolid Required");
-		} 
-		
+		if (pool.getPoolid() == null || pool.getPoolid() == "") {
+			throw new BadRequestException("Poolid Required");
+		}
+
 		message ms = new message();
 		poolEntity result = poolsvc.updatePool(pool);
 
@@ -121,16 +120,16 @@ public class poolContoroller {
 		return new ResponseEntity<message>(ms, HttpStatus.OK);
 
 	}
-	
+
 	@RequestMapping(value = "pool", method = RequestMethod.DELETE)
-	public ResponseEntity<message> deletePool(@RequestParam("pool_id") String pool_id) {
-    	if (pool_id == null || pool_id == "") {
-    		throw new BadRequestException("Poolid Required");
-		} 
-		
+	public ResponseEntity<message> deletePool(@RequestParam("poolid") String poolid) {
+		if (poolid == null || poolid == "") {
+			throw new BadRequestException("Poolid Required");
+		}
+
 		message ms = new message();
-		boolean isdelete = poolsvc.deletePool(pool_id);
-				
+		boolean isdelete = poolsvc.deletePool(poolid);
+
 		if (isdelete == false) {
 			ms.setReturnmessage("Data Not Found");
 			ms.setStatus(statusEnum.BAD_REQUEST.getStatusCode());

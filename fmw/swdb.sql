@@ -1,14 +1,24 @@
 CREATE DATABASE SWDB default CHARACTER SET UTF8; -- DB 생성
+
 use SWDB; -- SWDB 사용
 
-SET foreign_key_checks = 1; -- 외래키 체크 해제 : 0
+SET foreign_key_checks = 0; -- 외래키 체크 해제 : 0
 
 drop table sw_user;
-drop table sw_pool;
-drop table sw_pool_ttable;
-drop table sw_pool_use_type;
-drop table sw_pool_use_type_ttable;
-drop table sw_pool_vote; -- 테이블 drop
+
+
+-- drop table sw_pool;
+drop table sw_center;
+-- drop table sw_pool_ttable;
+drop table sw_center_ttable;
+-- drop table sw_pool_use_type;
+drop table sw_center_class;
+-- drop table sw_pool_use_type_ttable;
+drop table sw_center_class_ttable;
+-- drop table sw_pool_vote; -- 테이블 drop
+drop table sw_center_vote; 
+drop table sw_center_pool; 
+
 drop table sw_user_history;
 drop table sw_user_history_dtl;
 
@@ -33,146 +43,188 @@ insert into sw_user values('testdata22','1nickname','1testdata',0,'Y','A',CURREN
 
 select * from sw_user;
 
-CREATE TABLE sw_pool (-- 수영장 테이블
-    pool_id VARCHAR(20) PRIMARY KEY,
-    pool_nm VARCHAR(50),
-    pool_location VARCHAR(50),
-    pool_address_city VARCHAR(100),
-    pool_address_gu VARCHAR(100),
-    pool_address_detail VARCHAR(100),
-    pool_phone VARCHAR(20),
-    pool_website VARCHAR(50),
-    pool_instargram VARCHAR(50),
-    pool_parking_yn VARCHAR(2),
-    pool_image VARCHAR(50),
-    pool_detail LONGTEXT,
-    pool_lane_len INT(11),
-    pool_lane_num INT(11),
-    pool_lane_depth double,
-    pool_sea_yn VARCHAR(2),
-    pool_child_yn VARCHAR(2),
-    pool_locker_yn VARCHAR(2),
-    pool_locker_price VARCHAR(20),
-    pool_tower_yn VARCHAR(2),
-    pool_tower_price VARCHAR(20),
-    pool_shuttle_yn VARCHAR(2),
-    pool_shop_yn VARCHAR(2),
-    pool_etc_yn VARCHAR(2),
-    pool_break_yn VARCHAR(2),
-    pool_thumb_up INT(11),
-    pool_thumb_down INT(11),
+delete from SW_USER where UID = 'testdata3';
+
+commit;
+
+CREATE TABLE sw_center (-- 수영장 테이블
+    center_id VARCHAR(20) PRIMARY KEY,
+    center_nm VARCHAR(50),
+    center_location VARCHAR(50),
+    center_address_city VARCHAR(100),
+    center_address_gu VARCHAR(100),
+    center_address_detail VARCHAR(100),
+    center_phone VARCHAR(20),
+    center_website VARCHAR(50),
+    center_sns VARCHAR(50),
+    center_parking_yn VARCHAR(2),
+    center_image VARCHAR(200),
+    center_detail LONGTEXT,
+    center_holiday VARCHAR(200),
+    center_rule VARCHAR(200),
+    center_lane_len VARCHAR(20),
+    center_lane_num INT(11),
+    center_lane_depth double,
+    center_sea_yn VARCHAR(2),
+    center_warm_yn VARCHAR(2),
+    center_dv_yn VARCHAR(2),
+    center_child_yn VARCHAR(2),
+    center_locker_yn VARCHAR(2),
+    center_locker_price VARCHAR(20),
+    center_tower_yn VARCHAR(2),
+    center_tower_price VARCHAR(20),    
+    center_shuttle_yn VARCHAR(2),
+    center_shop_yn VARCHAR(2),
+    center_etc_yn VARCHAR(2),
+    center_break_yn VARCHAR(2),
+    center_thumb_up INT(11),
+    center_thumb_down INT(11),
     reg_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     mdfy_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )  ENGINE=INNODB;
 
-create index IDX_POOL_NM on sw_pool(pool_nm);
+create index IDX_CENTER_NM on sw_center(center_nm);
 
-show index from sw_pool;
+show index from sw_center;
 
-insert into sw_pool values('testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata',25,6,1,'Y','Y','Y','testdata','Y','testdata','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-insert into sw_pool values('1testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata',25,6,1,'Y','Y','Y','testdata','Y','testdata','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-insert into sw_pool values('2testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata',25,6,1.5,'Y','Y','Y','testdata','Y','testdata','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center values('testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','Y','testdata','testdata','testdata','testdata','25',6,1.5,'Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y',2,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
-select * from sw_pool;
+select * from sw_center;
 
 
 commit;
 
-CREATE TABLE sw_pool_ttable (-- 수영장 운영시간 테이블
-    ptt_id VARCHAR(20),
-    pool_id VARCHAR(20),
-    ptt_order_num INT(11),
-    ptt_day VARCHAR(20),
-    ptt_time VARCHAR(20),
+CREATE TABLE sw_center_ttable (-- 수영장 운영시간 테이블
+    ctt_id VARCHAR(20),
+    center_id VARCHAR(20),
+    ctt_order_num INT(11),
+    ctt_day VARCHAR(20),
+    ctt_time VARCHAR(20),
     reg_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     mdfy_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(ptt_id,pool_id),
-    constraint FK_SW_POOL_POOL_ID_TTABLE FOREIGN KEY(pool_id) references sw_pool(pool_id)
+    PRIMARY KEY(ctt_id,center_id),
+    constraint FK_SW_CENTER_CENTER_ID_TTABLE FOREIGN KEY(center_id) references sw_center(center_id)
 )  ENGINE=INNODB;
 
-create index FK_SW_POOL_POOL_ID_TTABLE on sw_pool_ttable(pool_id);
+create index FK_SW_CENTER_CENTER_ID_TTABLE on sw_center_ttable(center_id);
 
-show index from sw_pool_ttable;
+show index from sw_center_ttable;
 
-insert into sw_pool_ttable values('testdata','testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-insert into sw_pool_ttable values('1testdata','testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-insert into sw_pool_ttable values('testdata','1testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-insert into sw_pool_ttable values('1testdata','1testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_ttable values('testdata','testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_ttable values('1testdata','testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_ttable values('testdata','1testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_ttable values('1testdata','1testdata',1,'testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
-
-
-select * from sw_pool;
+commit;
 
 
+select * from sw_center_ttable;
 
-CREATE TABLE sw_pool_use_type (-- 수영장 운영 타입 테이블
-    type_id VARCHAR(20),
-    type_nm VARCHAR(50),
-    pool_id VARCHAR(20),
-    type_day_price VARCHAR(20),
-    type_period_price VARCHAR(20),
-    type_regist_time VARCHAR(20),
-    type_tip longtext,
-    type_user_num INT(11),
+CREATE TABLE sw_center_pool (-- 수영장 운영시간 테이블
+	pool_id	VARCHAR(20),
+	center_id	VARCHAR(50),
+	pool_nm	VARCHAR(20),
+	pool_lane_len	VARCHAR(20),
+	pool_lane_num	INT(11),
+	pool_lane_depth	VARCHAR(20),
     reg_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     mdfy_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(type_id,pool_id),
-    constraint FK_SW_POOL_POOL_ID_TYPE FOREIGN KEY(pool_id) references sw_pool(pool_id)
+    PRIMARY KEY(pool_id,center_id),
+    constraint FK_SW_CENTER_CENTER_ID_POOL FOREIGN KEY(center_id) references sw_center(center_id)
 )  ENGINE=INNODB;
 
-create index FK_SW_POOL_POOL_ID_TYPE on sw_pool_use_type(pool_id);
+create index FK_SW_CENTER_CENTER_ID_POOL on sw_center_pool(center_id);
 
-show index from sw_pool_use_type;
+show index from sw_center_pool;
 
-insert into sw_pool_use_type values('testdata','testdata','testdata','testdata','testdata','testdata','testdata',10,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_pool values('testdata','testdata','testdata','testdata',11,'testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_pool values('1testdata','testdata','testdata','testdata',11,'testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_pool values('testdata','2testdata','testdata','testdata',11,'testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_pool values('1testdata','2testdata','testdata','testdata',11,'testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+commit;
 
 
-select * from sw_pool_use_type;
+select * from sw_center_pool;
 
 
 
-CREATE TABLE sw_pool_use_type_ttable (-- 수영장 운영 타입 시간표 테이블
-    ttt_id VARCHAR(20),
-	type_id VARCHAR(20),
-	ttt_start_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ttt_end_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ttt_day VARCHAR(20),
-	type_type VARCHAR(2),
+
+CREATE TABLE sw_center_class (-- 수영장 운영 타입 테이블
+	class_id	VARCHAR(20),
+	class_nm	VARCHAR(50),
+	center_id	VARCHAR(20),
+	class_type1	VARCHAR(20),
+	class_type1_fee	VARCHAR(20),
+	class_type2	VARCHAR(20),
+	class_type2_fee	VARCHAR(20),
+	class_type3	VARCHAR(20),
+	class_type3_fee	VARCHAR(20),
+	class_type4	VARCHAR(20),
+	class_type4_fee	VARCHAR(20),
+	class_use	longtext,
+	class_limit	longtext,
     reg_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     mdfy_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(ttt_id,type_id),
-    constraint FK_SW_POOL_TYPE_TYPE_ID FOREIGN KEY(type_id) references sw_pool_use_type(type_id)
+    PRIMARY KEY(class_id,center_id),
+    constraint FK_SW_CENTER_CENTER_ID_TYPE FOREIGN KEY(center_id) references sw_center(center_id)
 )  ENGINE=INNODB;
 
-create index FK_SW_POOL_TYPE_TYPE_ID on sw_pool_use_type_ttable(type_id);
+create index FK_SW_CENTER_CENTER_ID_TYPE on sw_center_class(center_id);
 
-show index from sw_pool_use_type_ttable;
+show index from sw_center_class;
 
-insert into sw_pool_use_type_ttable values('testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'testdata','Y',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
-
-
-select * from sw_pool_use_type_ttable;
+insert into sw_center_class values('testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata','testdata',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 
-CREATE TABLE sw_pool_vote (-- 수영장 추천 정보 테이블
-    pool_vote_id VARCHAR(20),
-	pool_id VARCHAR(20),
+select * from sw_center_class;
+
+commit;
+
+CREATE TABLE sw_center_class_ttable (-- 수영장 운영 타입 시간표 테이블
+	cctt_id	VARCHAR(20),
+	class_id	VARCHAR(20),
+	cctt_time	INT(11),
+	cctt_day	VARCHAR(20),
+	cctt_type	VARCHAR(2),
+    reg_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    mdfy_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(cctt_id,class_id),
+    constraint FK_SW_CENTER_CLASS_CLASS_ID FOREIGN KEY(class_id) references sw_center_class(class_id)
+)  ENGINE=INNODB;
+
+create index FK_SW_CENTER_CLASS_CLASS_ID on sw_center_class_ttable(class_id);
+
+show index from sw_center_class_ttable;
+
+insert into sw_center_class_ttable values('testdata','testdata',1,'testdata','T',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+
+select * from sw_center_class_ttable;
+
+commit;
+
+CREATE TABLE sw_center_vote (-- 수영장 추천 정보 테이블
+    center_vote_id VARCHAR(20),
+	center_id VARCHAR(20),
     uid VARCHAR(20),
-	pool_vote_type VARCHAR(2),
+	center_vote_type VARCHAR(2),
     reg_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     mdfy_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(pool_vote_id,pool_id),
-    constraint FK_SW_POOL_POOL_ID_VOTE FOREIGN KEY(pool_id) references sw_pool(pool_id)
+    PRIMARY KEY(center_vote_id,center_id),
+    constraint FK_SW_CENTER_CENTER_ID_VOTE FOREIGN KEY(center_id) references sw_center(center_id)
 )  ENGINE=INNODB;
 
-create index FK_SW_POOL_POOL_ID_VOTE on sw_pool_vote(pool_id);
+create index FK_SW_CENTER_CENTER_ID_VOTE on sw_center_vote(center_id);
 
-show index from sw_pool_vote;
+show index from sw_center_vote;
 
-insert into sw_pool_vote values('testdata','testdata','testdata','U',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+insert into sw_center_vote values('testdata','testdata','testdata','U',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
 
-select * from sw_pool_vote;
+select * from sw_center_vote;
+
+commit;
 
 CREATE TABLE sw_user_history (-- 사용자 기록 테이블
     history_id VARCHAR(20),

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fmw.dto.message;
-import com.fmw.entity.poolEntity;
+import com.fmw.entity.centerEntity;
 import com.fmw.entity.poolttableEntity;
 import com.fmw.entity.userEntity;
 import com.fmw.enums.statusEnum;
 import com.fmw.exception.BadRequestException;
-import com.fmw.svc.poolSvc;
+import com.fmw.svc.centerSvc;
 import com.fmw.svc.poolttableSvc;
 
 @RestController
@@ -81,26 +81,21 @@ public class poolttableContoroller {
 		return new ResponseEntity<message>(ms, HttpStatus.OK);
 
 	}
-//
-//	@RequestMapping(value = "pool", method = RequestMethod.POST)
-//	public ResponseEntity<message> insertPool(@RequestBody poolEntity pool) {
-//
-//		// 필수항목 정리 후 체크 로직 적용 예정
-//
-//		message ms = new message();
-//		poolEntity result = poolsvc.insertPool(pool);
-//
-//		ms.setReturnmessage("Success");
-//		if (result == null) {
-//			ms.setReturnmessage("Exist Pool");
-//			ms.setStatus(statusEnum.BAD_REQUEST.getStatusCode());
-//		} else {
-//			ms.setReturnmessage("Success");
-//			ms.setStatus(statusEnum.OK.getStatusCode());
-//		}
-//		return new ResponseEntity<message>(ms, HttpStatus.OK);
-//
-//	}
+
+	@RequestMapping(value = "poolttable", method = RequestMethod.POST)
+	public ResponseEntity<message> insertPool(@RequestBody poolttableEntity poolttable) {
+
+		// 필수항목 정리 후 체크 로직 적용 예정
+
+		message ms = new message();
+		poolttableEntity result = poolttablesvc.insertPoolttable(poolttable);
+
+		ms.setReturnmessage("Success");
+		ms.setStatus(statusEnum.OK.getStatusCode());
+
+		return new ResponseEntity<message>(ms, HttpStatus.OK);
+
+	}
 //
 //	@RequestMapping(value = "pool", method = RequestMethod.PATCH)
 //	public ResponseEntity<message> updatePool(@RequestBody poolEntity pool) {

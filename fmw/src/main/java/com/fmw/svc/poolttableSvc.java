@@ -13,10 +13,7 @@ public interface poolttableSvc {
 	
 	public List<poolttableEntity> selectPoolttbleByPoolId(String poolid);
 
-//	
-//	public List<poolEntity> selectPoolListByPoolnm(String poolnm);
-//
-//	public poolEntity insertPool(poolEntity pool);
+	public poolttableEntity insertPoolttable(poolttableEntity poolttable);
 //	
 //	public poolEntity updatePool(poolEntity pool);
 //

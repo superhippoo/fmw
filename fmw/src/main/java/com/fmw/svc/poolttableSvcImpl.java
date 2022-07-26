@@ -1,5 +1,6 @@
 package com.fmw.svc;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.fmw.dao.poolttableRepository;
 import com.fmw.entity.poolttableEntity;
+import com.fmw.util.uniqueIdUtil;
 
 @Service
 public class poolttableSvcImpl implements poolttableSvc {
@@ -30,31 +32,15 @@ public class poolttableSvcImpl implements poolttableSvc {
 		return poolttablerepository.findByPoolid(poolid);
 	}
 
-//	@Override
-//	public Optional<poolEntity> selectPoolByPoolId(String pool_id) {
-//		return poolrepository.findById(pool_id);
-//	}
-//
-//	@Override
-//	public List<poolEntity> selectPoolListByPoolnm(String poolnm) {
-//		return poolrepository.findByPoolnm(poolnm);
-//	}
-//
-//	@Override
-//	public poolEntity insertPool(poolEntity pool) {
-//		List<poolEntity> temppool = poolrepository.findByPoolnm(pool.getPoolnm());
-//
-//		if (!temppool.isEmpty()) {// 같은이름의 수영장 존재
-//			return null;
-//		}
-//
-//		pool.setPool_id(uniqueIdUtil.generateUid("P"));
-//		Timestamp time = new Timestamp(System.currentTimeMillis());
-//		pool.setReg_dt(time);
-//		pool.setMdfy_dt(time);
-//
-//		return poolrepository.saveAndFlush(pool);
-//	}
+	@Override
+	public poolttableEntity insertPoolttable(poolttableEntity poolttable) {
+		poolttable.setPttid(uniqueIdUtil.generateUid("S"));
+		Timestamp time = new Timestamp(System.currentTimeMillis());
+		poolttable.setRegdt(time);
+		poolttable.setMdfydt(time);
+
+		return poolttablerepository.saveAndFlush(poolttable);
+	}
 //
 //	@Override
 //	public poolEntity updatePool(poolEntity pool) {

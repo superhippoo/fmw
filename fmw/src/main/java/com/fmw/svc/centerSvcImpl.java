@@ -40,7 +40,7 @@ public class centerSvcImpl implements centerSvc {
 			return null;
 		}
 
-		center.setCenterid(uniqueIdUtil.generateUid("P"));
+		center.setCenterid(uniqueIdUtil.generateUid("C"));
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		center.setRegdt(time);
 		center.setMdfydt(time);

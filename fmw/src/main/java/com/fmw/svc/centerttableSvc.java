@@ -14,9 +14,9 @@ public interface centerttableSvc {
 	public List<centerttableEntity> selectCenterttableByCenterId(centerttableEntity centerttable);
 
 	public centerttableEntity insertCenterttable(centerttableEntity centerttable);
-//	
-//	public centerEntity updateCenter(centerEntity center);
-//
-//	public boolean deleteCenter(String center_id);
+	
+	public centerttableEntity updateCenterttable(centerttableEntity centerttable);
+
+	public boolean deleteCenterttable(centerttableEntity centerttable);
 
 }

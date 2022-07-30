@@ -96,46 +96,46 @@ public class centerttableContoroller {
 		return new ResponseEntity<message>(ms, HttpStatus.OK);
 
 	}
-//
-//	@RequestMapping(value = "center", method = RequestMethod.PATCH)
-//	public ResponseEntity<message> updateCenter(@RequestBody centerEntity center) {
-//		if (center.getCenter_id() == null || center.getCenter_id() == "") {
-//			throw new BadRequestException("Centerid Required");
-//		}
-//
-//		message ms = new message();
-//		centerEntity result = centersvc.updateCenter(center);
-//
-//		if (result == null) {
-//			ms.setReturnmessage("Data Not Found");
-//			ms.setStatus(statusEnum.BAD_REQUEST.getStatusCode());
-//		} else {
-//			ms.setReturnmessage("Success");
-//			ms.setStatus(statusEnum.OK.getStatusCode());
-//		}
-//
-//		return new ResponseEntity<message>(ms, HttpStatus.OK);
-//
-//	}
-//
-//	@RequestMapping(value = "center", method = RequestMethod.DELETE)
-//	public ResponseEntity<message> deleteCenter(@RequestParam("center_id") String center_id) {
-//		if (center_id == null || center_id == "") {
-//			throw new BadRequestException("Centerid Required");
-//		}
-//
-//		message ms = new message();
-//		boolean isdelete = centersvc.deleteCenter(center_id);
-//
-//		if (isdelete == false) {
-//			ms.setReturnmessage("Data Not Found");
-//			ms.setStatus(statusEnum.BAD_REQUEST.getStatusCode());
-//		} else {
-//			ms.setReturnmessage("Success");
-//			ms.setStatus(statusEnum.OK.getStatusCode());
-//		}
-//		return new ResponseEntity<message>(ms, HttpStatus.OK);
-//
-//	}
+
+	@RequestMapping(value = "updatecenterttable", method = RequestMethod.POST)
+	public ResponseEntity<message> updateCenterttable(@RequestBody centerttableEntity centerttable) {
+		if (centerttable.getCttid() == null || centerttable.getCttid() == "") {
+			throw new BadRequestException("Centerttableid Required");
+		}
+
+		message ms = new message();
+		centerttableEntity result = centerttablesvc.updateCenterttable(centerttable);
+
+		if (result == null) {
+			ms.setReturnmessage("Data Not Found");
+			ms.setStatus(statusEnum.BAD_REQUEST.getStatusCode());
+		} else {
+			ms.setReturnmessage("Success");
+			ms.setStatus(statusEnum.OK.getStatusCode());
+		}
+
+		return new ResponseEntity<message>(ms, HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = "deletecenterttable", method = RequestMethod.POST)
+	public ResponseEntity<message> deleteCenterttable(@RequestBody centerttableEntity centerttable) {
+		if (centerttable.getCttid() == null || centerttable.getCttid() == "") {
+			throw new BadRequestException("Centerttableid Required");
+		}
+
+		message ms = new message();
+		boolean isdelete = centerttablesvc.deleteCenterttable(centerttable);
+
+		if (isdelete == false) {
+			ms.setReturnmessage("Data Not Found");
+			ms.setStatus(statusEnum.BAD_REQUEST.getStatusCode());
+		} else {
+			ms.setReturnmessage("Success");
+			ms.setStatus(statusEnum.OK.getStatusCode());
+		}
+		return new ResponseEntity<message>(ms, HttpStatus.OK);
+
+	}
 
 }

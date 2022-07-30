@@ -41,31 +41,31 @@ public class centerttableSvcImpl implements centerttableSvc {
 
 		return centerttablerepository.saveAndFlush(centerttable);
 	}
-//
-//	@Override
-//	public centerEntity updateCenter(centerEntity center) {
-//		Optional<centerEntity> tempcenter = centerrepository.findById(center.getCenter_id());
-//
-//		if (tempcenter.isPresent()) {
-//			Timestamp time = new Timestamp(System.currentTimeMillis());
-//			center.setMdfy_dt(time);
-//			return centerrepository.saveAndFlush(center);
-//		} else {
-//			return null;
-//		}
-//
-//	}
-//
-//	@Override
-//	public boolean deleteCenter(String center_id) {
-//		Optional<centerEntity> tempcenter = centerrepository.findById(center_id);
-//
-//		if (tempcenter.isPresent()) {
-//			centerrepository.deleteById(center_id);
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+
+	@Override
+	public centerttableEntity updateCenterttable(centerttableEntity centerttable) {
+		Optional<centerttableEntity> tempcenterttable = centerttablerepository.findById(centerttable.getCttid());
+
+		if (tempcenterttable.isPresent()) {
+			Timestamp time = new Timestamp(System.currentTimeMillis());
+			centerttable.setMdfydt(time);
+
+			return centerttablerepository.saveAndFlush(centerttable);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean deleteCenterttable(centerttableEntity centerttable) {
+		Optional<centerttableEntity> tempcenterttable = centerttablerepository.findById(centerttable.getCttid());
+
+		if (tempcenterttable.isPresent()) {
+			centerttablerepository.deleteById(centerttable.getCttid());
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

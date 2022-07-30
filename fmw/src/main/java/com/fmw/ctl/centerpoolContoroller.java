@@ -13,23 +13,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fmw.dto.message;
-import com.fmw.entity.centerttableEntity;
+import com.fmw.entity.centerpoolEntity;
 import com.fmw.enums.statusEnum;
 import com.fmw.exception.BadRequestException;
-import com.fmw.svc.centerttableSvc;
+import com.fmw.svc.centerpoolSvc;
 
 @RestController
-@RequestMapping("/centerttable")
-public class centerttableContoroller {
+@RequestMapping("/centerpool")
+public class centerpoolContoroller {
 
 	@Autowired
-	private centerttableSvc centerttablesvc;
+	private centerpoolSvc centerpoolsvc;
 
-	@RequestMapping(value = "centerttablelist", method = RequestMethod.GET)
-	public ResponseEntity<message> selectCenterttableList() {
+	@RequestMapping(value = "centerpoollist", method = RequestMethod.GET)
+	public ResponseEntity<message> selectCenterpoolList() {
 		message ms = new message();
-		List<centerttableEntity> result = new ArrayList<centerttableEntity>();
-		result = centerttablesvc.selectCenterttbleList();
+		List<centerpoolEntity> result = new ArrayList<centerpoolEntity>();
+		result = centerpoolsvc.selectCenterpoolList();
 		ms.setData(result);
 		ms.setStatus(statusEnum.OK.getStatusCode());
 		ms.setTotalcount(String.valueOf(result.size()));
@@ -41,13 +41,13 @@ public class centerttableContoroller {
 
 	}
 
-	@RequestMapping(value = "selectcenterttable", method = RequestMethod.POST)
-	public ResponseEntity<message> selectCenterttableByPttId(@RequestBody centerttableEntity centerttable) {
-		if (centerttable.getCttid() == null || centerttable.getCttid() == "") {
-			throw new BadRequestException("cttid Required");
+	@RequestMapping(value = "selectcenterpool", method = RequestMethod.POST)
+	public ResponseEntity<message> selectCenterpoolByPoolId(@RequestBody centerpoolEntity centerpool) {
+		if (centerpool.getPoolid() == null || centerpool.getPoolid() == "") {
+			throw new BadRequestException("poolid Required");
 		}
 		message ms = new message();
-		Optional<centerttableEntity> result = centerttablesvc.selectCenterttableByCenterttableId(centerttable);
+		Optional<centerpoolEntity> result = centerpoolsvc.selectCenterpoolByCenterpoolId(centerpool);
 		ms.setStatus(statusEnum.OK.getStatusCode());
 		ms.setReturnmessage("Data Not Found");
 		if (result.isPresent()) {// 값이 없으면
@@ -58,15 +58,15 @@ public class centerttableContoroller {
 
 	}
 
-	@RequestMapping(value = "selectcenterttablebycenterid", method = RequestMethod.POST)
-	public ResponseEntity<message> selectcenterttableByCenterid(@RequestBody centerttableEntity centerttable) {
-		if (centerttable.getCenterid() == null || centerttable.getCenterid() == "") {
+	@RequestMapping(value = "selectcenterpoolbycenterid", method = RequestMethod.POST)
+	public ResponseEntity<message> selectcenterpoolByCenterid(@RequestBody centerpoolEntity centerpool) {
+		if (centerpool.getCenterid() == null || centerpool.getCenterid() == "") {
 			throw new BadRequestException("centerid Required");
 		}
 
 		message ms = new message();
-		List<centerttableEntity> result = new ArrayList<centerttableEntity>();
-		result = centerttablesvc.selectCenterttableByCenterId(centerttable);
+		List<centerpoolEntity> result = new ArrayList<centerpoolEntity>();
+		result = centerpoolsvc.selectCenterpoolByCenterId(centerpool);
 		ms.setData(result);
 		ms.setStatus(statusEnum.OK.getStatusCode());
 		ms.setTotalcount(String.valueOf(result.size()));
@@ -78,13 +78,13 @@ public class centerttableContoroller {
 
 	}
 
-	@RequestMapping(value = "insertcenterttable", method = RequestMethod.POST)
-	public ResponseEntity<message> insertCenterttable(@RequestBody centerttableEntity centerttable) {
+	@RequestMapping(value = "insertcenterpool", method = RequestMethod.POST)
+	public ResponseEntity<message> insertCenterpool(@RequestBody centerpoolEntity centerpool) {
 
 		// 필수항목 정리 후 체크 로직 적용 예정
 
 		message ms = new message();
-		centerttableEntity result = centerttablesvc.insertCenterttable(centerttable);
+		centerpoolEntity result = centerpoolsvc.insertCenterpool(centerpool);
 
 		ms.setReturnmessage("Success");
 		ms.setStatus(statusEnum.OK.getStatusCode());
@@ -93,14 +93,14 @@ public class centerttableContoroller {
 
 	}
 
-	@RequestMapping(value = "updatecenterttable", method = RequestMethod.POST)
-	public ResponseEntity<message> updateCenterttable(@RequestBody centerttableEntity centerttable) {
-		if (centerttable.getCttid() == null || centerttable.getCttid() == "") {
-			throw new BadRequestException("Centerttableid Required");
+	@RequestMapping(value = "updatecenterpool", method = RequestMethod.POST)
+	public ResponseEntity<message> updateCenterpool(@RequestBody centerpoolEntity centerpool) {
+		if (centerpool.getPoolid() == null || centerpool.getPoolid() == "") {
+			throw new BadRequestException("Poolid Required");
 		}
 
 		message ms = new message();
-		centerttableEntity result = centerttablesvc.updateCenterttable(centerttable);
+		centerpoolEntity result = centerpoolsvc.updateCenterpool(centerpool);
 
 		if (result == null) {
 			ms.setReturnmessage("Data Not Found");
@@ -114,14 +114,14 @@ public class centerttableContoroller {
 
 	}
 
-	@RequestMapping(value = "deletecenterttable", method = RequestMethod.POST)
-	public ResponseEntity<message> deleteCenterttable(@RequestBody centerttableEntity centerttable) {
-		if (centerttable.getCttid() == null || centerttable.getCttid() == "") {
-			throw new BadRequestException("Centerttableid Required");
+	@RequestMapping(value = "deletecenterpool", method = RequestMethod.POST)
+	public ResponseEntity<message> deleteCenterpool(@RequestBody centerpoolEntity centerpool) {
+		if (centerpool.getPoolid() == null || centerpool.getPoolid() == "") {
+			throw new BadRequestException("Poolid Required");
 		}
 
 		message ms = new message();
-		boolean isdelete = centerttablesvc.deleteCenterttable(centerttable);
+		boolean isdelete = centerpoolsvc.deleteCenterpool(centerpool);
 
 		if (isdelete == false) {
 			ms.setReturnmessage("Data Not Found");

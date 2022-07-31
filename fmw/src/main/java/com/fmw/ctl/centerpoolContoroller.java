@@ -85,7 +85,7 @@ public class centerpoolContoroller {
 
 		message ms = new message();
 		centerpoolEntity result = centerpoolsvc.insertCenterpool(centerpool);
-
+		ms.setData(result);
 		ms.setReturnmessage("Success");
 		ms.setStatus(statusEnum.OK.getStatusCode());
 

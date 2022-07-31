@@ -85,7 +85,7 @@ public class centerttableContoroller {
 
 		message ms = new message();
 		centerttableEntity result = centerttablesvc.insertCenterttable(centerttable);
-
+		ms.setData(result);
 		ms.setReturnmessage("Success");
 		ms.setStatus(statusEnum.OK.getStatusCode());
 
